@@ -4,8 +4,28 @@ Console.WriteLine("Northwind with LINQ!");
 
 NorthwindContext _context = new();
 
-#region Supplier & Products
+var orderTotal = (from o in _context.Orders
+                  join d in _context.OrderDetails
+                     on o.OrderId equals d.OrderId
+                  join p in _context.Products
+                     on d.ProductId equals p.ProductId
+                  group new { o, d, p } by o.OrderId into grp
+                  orderby grp.Key
+                  select new {
+                      OrderId = grp.Key,
+                      OrderTotal = grp.Sum(x => x.d.Quantity * x.p.UnitPrice)
+                  }).Sum(x => x.OrderTotal);
 
+//foreach(var o in orders) {
+//    Console.WriteLine($"{o.OrderId,5} | {o.LineTotal,12:C}");
+//}
+
+Console.WriteLine($"Total all order is: {orderTotal:C}");
+
+
+
+#region Supplier & Products
+/*
 var suppliers = from s in _context.Suppliers
                 join p in _context.Products
                     on s.SupplierId equals p.SupplierId
@@ -23,7 +43,7 @@ foreach(var s in suppliers) {
 }
 
 Console.WriteLine($"Total Inventory Cost : {suppliers.Sum(s => s.InventoryCost),20:C}");
-
+*/
 #endregion
 
 /*

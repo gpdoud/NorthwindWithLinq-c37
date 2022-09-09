@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace NorthwindWithLinq.Models {
-    
-    public class Employee {
+namespace NorthwindWithLinq.Models
+{
+    public partial class Employee
+    {
+
         public int EmployeeId { get; set; }
-        public string FirstName { get; set; } = String.Empty;
-        public string LastName { get; set; }
+        public string LastName { get; set; } = null!;
+        public string FirstName { get; set; } = null!;
         public string? Title { get; set; }
         public string? TitleOfCourtesy { get; set; }
         public DateTime? BirthDate { get; set; }
@@ -23,7 +22,7 @@ namespace NorthwindWithLinq.Models {
         public string? Extension { get; set; }
         public byte[]? Photo { get; set; }
         public string? Notes { get; set; }
-        public int? ReportsTo { get; set; } // FK
+        public int? ReportsTo { get; set; }
         public string? PhotoPath { get; set; }
 
     }

@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace NorthwindWithLinq.Models {
-    
-    public class Product {
+namespace NorthwindWithLinq.Models
+{
+    public partial class Product
+    {
+
         public int ProductId { get; set; }
-        public string ProductName { get; set; }
+        public string ProductName { get; set; } = null!;
         public int? SupplierId { get; set; }
         public int? CategoryId { get; set; }
         public string? QuantityPerUnit { get; set; }
@@ -18,15 +17,5 @@ namespace NorthwindWithLinq.Models {
         public short? ReorderLevel { get; set; }
         public bool Discontinued { get; set; }
 
-        public string ProductIdName() {
-            return $"ProductId      : {ProductId}\n" +
-                   $"ProductName    : {ProductName}\n";
-        }
-
-        public override string ToString() {
-            return $"ProductId      : {ProductId}\n" +
-                   $"ProductName    : {ProductName}\n" +
-                   $"UnitPrice      : {UnitPrice:C}\n";
-        }
     }
 }
